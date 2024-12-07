@@ -90,19 +90,7 @@ app.put('/api/events/:id', async (req, res) => {
     }
 });
 
-app.delete('/api/events/:id', async (req, res) => {
-    const { id } = req.params;
-    const query = 'DELETE FROM Events WHERE id = ?';
-    try {
-        const [result] = await connection.execute(query, [id]);
-        if (result.affectedRows === 0) {
-            return res.status(404).json({ error: 'Event not found' });
-        }
-        res.json({ message: 'Event deleted successfully.' });
-    } catch (err) {
-        res.status(500).json({ error: err.message });
-    }
-});
+
 
 app.listen(PORT, () => {
     console.log(`Server is running at http://localhost:${PORT}`);
